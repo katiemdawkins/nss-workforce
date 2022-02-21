@@ -1,5 +1,7 @@
 //this module fetches the employee data from the json server
-let employeeAppState = []
+let employeeAppState = {
+    employees:[]
+}
 
 const API = "http://localhost:8088"
 
@@ -7,12 +9,12 @@ export const fetchEmployees = () => {
     return fetch (`${API}/employees`)
     .then(response => response.json())
     .then(
-    (employeeList)=>{
-        employeeAppState = employeeList
+    (employeeArray)=>{
+        employeeAppState.employees = employeeArray
     })
 }
 
 export const getEmployeeList = () => {
-    const employeesList = employeeAppState.map(employee =>({...employee}))
+    const employeesList = employeeAppState.employees.map(employee =>({...employee}))
     return employeesList
 }
